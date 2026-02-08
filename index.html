@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(#ffe6ef, #ffd6e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Comic Sans MS", cursive;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      width: 100%;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 6px;
+    }
+
+    .subtext {
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 22px;
+    }
+
+    .teddy {
+      font-size: 90px;
+      margin: 20px 0;
+      transition: transform 0.3s;
+    }
+
+    .teddy:hover {
+      transform: scale(1.1);
+    }
+
+    .buttons {
+      margin: 30px auto;
+      position: relative;
+      width: 280px;
+      height: 180px;
+    }
+
+    #yesBtn {
+      padding: 18px 50px;
+      font-size: 22px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+    }
+
+    #noBtn {
+      padding: 8px 18px;
+      font-size: 14px;
+      background: #ddd;
+      border: none;
+      border-radius: 10px;
+      position: absolute;
+      top: 120px;
+      left: 100px;
+      cursor: pointer;
+    }
+
+    .surprise {
+      display: none;
+      margin-top: 30px;
+    }
+
+    .surprise h2 {
+      color: #ff4d6d;
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .message {
+      margin-top: 14px;
+      color: #555;
+      font-size: 16px;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Hey 👻 will you be my Valentine? 💖</h1>
+    <div class="subtext">
+      There’s something I’ve wanted to ask you for a while now…
+    </div>
+
+    <div class="teddy">🧸</div>
+
+    <div class="buttons">
+      <button id="yesBtn">YES 💕</button>
+      <button id="noBtn">no</button>
+    </div>
+
+    <div class="surprise" id="surprise">
+      <h2>YAYY!! 🎉💖</h2>
+      <img
+        src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif"
+        alt="Happy GIF"
+        width="280"
+      />
+      <div class="message">
+        This truly means a lot to me.<br />
+        Thank you for being exactly who you are.
+      </div>
+    </div>
+
+    <div class="footer">"No" seems a bit shy 😉</div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const surprise = document.getElementById("surprise");
+    const buttonsArea = document.querySelector(".buttons");
+
+    function moveNo() {
+      const padding = 10;
+      const yesSafeHeight = 70;
+
+      const maxX = buttonsArea.offsetWidth - noBtn.offsetWidth - padding;
+      const minY = yesSafeHeight + padding;
+      const maxY = buttonsArea.offsetHeight - noBtn.offsetHeight - padding;
+
+      const x = Math.random() * maxX;
+      const y = minY + Math.random() * (maxY - minY);
+
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    }
+
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
+
+    yesBtn.addEventListener("click", () => {
+      document.querySelector(".buttons").style.display = "none";
+      surprise.style.display = "block";
+      document.querySelector(".teddy").textContent = "🧸💖";
+    });
+  </script>
+</body>
+</html>
