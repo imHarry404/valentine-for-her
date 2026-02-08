@@ -3,22 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <title>Be My Valentine ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Locked cute font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     * {
       box-sizing: border-box;
       font-family: "Poppins", sans-serif;
-      -webkit-text-size-adjust: 100%;
     }
 
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(#ffe6ef, #ffd6e5);
+      background: linear-gradient(135deg, #ffe6ef, #ffd1dc);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -27,59 +25,70 @@
 
     .container {
       text-align: center;
-      width: 100%;
       max-width: 380px;
-      padding: 20px 16px;
+      width: 100%;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
       color: #ff4d6d;
       font-size: 22px;
       margin-bottom: 8px;
-      font-weight: 600;
     }
 
     .subtext {
-      color: #555;
       font-size: 14px;
+      color: #555;
       margin-bottom: 18px;
     }
 
     .teddy {
-      font-size: 72px;
+      font-size: 74px;
       margin: 14px 0;
+      animation: float 3s ease-in-out infinite;
     }
 
     .buttons {
-      margin: 26px auto;
       position: relative;
       width: 260px;
       height: 160px;
+      margin: 26px auto;
     }
 
     #yesBtn {
       padding: 16px 44px;
       font-size: 18px;
-      background: #ff4d6d;
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
       color: white;
       border: none;
-      border-radius: 16px;
+      border-radius: 18px;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(255, 77, 109, 0.35);
-      position: relative;
+      box-shadow: 0 10px 24px rgba(255, 77, 109, 0.45);
       z-index: 2;
+      position: relative;
     }
 
     #noBtn {
+      position: absolute;
       padding: 8px 16px;
       font-size: 13px;
-      background: #e0e0e0;
-      border: none;
+      background: #ededed;
       border-radius: 10px;
-      position: absolute;
-      top: 110px;
-      left: 90px;
+      border: none;
       cursor: pointer;
+      z-index: 1;
+      transition:
+        left 0.6s ease,
+        top 0.6s ease,
+        transform 0.4s ease;
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #777;
     }
 
     .surprise {
@@ -89,70 +98,60 @@
 
     .surprise h2 {
       color: #ff4d6d;
-      font-size: 26px;
-      margin-bottom: 10px;
-      font-weight: 600;
     }
 
-    .message {
-      margin-top: 12px;
-      color: #555;
-      font-size: 14px;
-      max-width: 300px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.4;
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 18px;
+      animation: rise 4s linear forwards;
+      pointer-events: none;
     }
 
-    .footer {
-      margin-top: 18px;
-      color: #777;
-      font-size: 12px;
+    @keyframes float {
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes rise {
+      to {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Hey 👻, will you be my Valentine? 💖</h1>
+<div class="container">
+  <h1>Hey 👻, will you be my Valentine? 💖</h1>
+  <div class="subtext">There’s something I’ve wanted to ask you for a while…</div>
 
-    <div class="subtext">
-      There’s something I’ve wanted to ask you for a while now…
-    </div>
+  <div class="teddy">🧸</div>
 
-    <div class="teddy">🧸</div>
-
-    <div class="buttons">
-      <button id="yesBtn">YES 💕</button>
-      <button id="noBtn">no</button>
-    </div>
-
-    <div class="surprise" id="surprise">
-      <h2>YAYY!! 🎉💖</h2>
-      <img
-        src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif"
-        width="260"
-        alt="Happy"
-      />
-      <div class="message">
-        This truly means a lot to me.<br />
-        Thank you for being exactly who you are.
-      </div>
-    </div>
-
-    <div class="footer">“No” seems a bit shy 😉</div>
-
-    <audio id="bgMusic"></audio>
+  <div class="buttons">
+    <button id="yesBtn">YES 💕</button>
+    <button id="noBtn">no</button>
   </div>
 
-  <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const surprise = document.getElementById("surprise");
-    const buttonsArea = document.querySelector(".buttons");
-    const bgMusic = document.getElementById("bgMusic");
+  <div class="surprise" id="surprise">
+    <h2>YAYY!! 🎉💖</h2>
+    <img src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" width="260">
+    <p style="font-size:14px;color:#555;">This truly means a lot to me 💞</p>
+  </div>
 
-    const clips = [
+  <div class="footer">“No” seems a bit shy 😉</div>
+
+  <audio id="bgMusic"></audio>
+</div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const buttons = document.querySelector(".buttons");
+  const surprise = document.getElementById("surprise");
+  const music = document.getElementById("bgMusic");
+
+  const songs = [
       "songs/Bas_Tumse_Milne_Ki_der_Thi.mp3",
       "songs/Hey_Sokha.mp3",
       "songs/Hum_tere_pyar_me.mp3",
@@ -163,33 +162,84 @@
       "songs/Tum_Hi_Ho.mp3",
       "songs/Ye_Tune_Kya_Kiya.mp3",
       "songs/Soch_Na_Sake.mp3"
-    ];
+  ];
 
-    function moveNo() {
-      const padding = 10;
-      const yesSafeHeight = 70;
+  const texts = [
+    "Are you sure?",
+    "Really?",
+    "Think again 😏",
+    "Nope!",
+    "Not allowed 😜",
+    "Try YES 😌",
+    "Still thinking?",
+    "Wrong button 😂",
+    "Nice try 😆",
+    "Hehe nope"
+  ];
 
-      const maxX = buttonsArea.offsetWidth - noBtn.offsetWidth - padding;
-      const minY = yesSafeHeight + padding;
-      const maxY = buttonsArea.offsetHeight - noBtn.offsetHeight - padding;
+  let index = 0;
+  let scale = 1;
+  let grow = true;
 
-      noBtn.style.left = `${Math.random() * maxX}px`;
-      noBtn.style.top = `${minY + Math.random() * (maxY - minY)}px`;
-    }
+  function moveNo() {
+    const area = buttons.getBoundingClientRect();
+    const yes = yesBtn.getBoundingClientRect();
 
-    noBtn.addEventListener("mouseenter", moveNo);
-    noBtn.addEventListener("touchstart", moveNo);
+    let x, y, safe;
+    do {
+      x = Math.random() * (area.width - noBtn.offsetWidth);
+      y = Math.random() * (area.height - noBtn.offsetHeight);
+      safe = !(
+        x + noBtn.offsetWidth > yes.left - area.left &&
+        x < yes.right - area.left &&
+        y + noBtn.offsetHeight > yes.top - area.top &&
+        y < yes.bottom - area.top
+      );
+    } while (!safe);
 
-    yesBtn.addEventListener("click", () => {
-      document.querySelector(".buttons").style.display = "none";
-      surprise.style.display = "block";
-      document.querySelector(".teddy").textContent = "🧸💖";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
 
-      const randomClip = clips[Math.floor(Math.random() * clips.length)];
-      bgMusic.src = randomClip;
-      bgMusic.volume = 0.7;
-      bgMusic.play();
-    });
-  </script>
+    noBtn.textContent = texts[index++ % texts.length];
+
+    scale += grow ? 0.05 : -0.05;
+    if (scale > 1.2) grow = false;
+    if (scale < 0.6) grow = true;
+    noBtn.style.transform = `scale(${scale})`;
+  }
+
+  setInterval(moveNo, 1200);
+
+  document.addEventListener("mousemove", e => {
+    const r = noBtn.getBoundingClientRect();
+    const d = Math.hypot(
+      e.clientX - (r.left + r.width / 2),
+      e.clientY - (r.top + r.height / 2)
+    );
+    if (d < 90) moveNo();
+  });
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = 16 + Math.random() * 20 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }
+
+  yesBtn.addEventListener("click", () => {
+    buttons.style.display = "none";
+    surprise.style.display = "block";
+    document.querySelector(".teddy").textContent = "🧸💖";
+
+    music.src = songs[Math.floor(Math.random() * songs.length)];
+    music.volume = 0.7;
+    music.play();
+
+    setInterval(createHeart, 300);
+  });
+</script>
 </body>
 </html>
